@@ -31,5 +31,3 @@ class GradeAdmin(admin.ModelAdmin):
 
 admin.site.register(Grade, GradeAdmin)
 
-
-
