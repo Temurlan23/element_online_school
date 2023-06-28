@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Element_online_school</title>
+</head>
+<body>
+	<h3>Добавление курса</h3>
+	<form method="POST">
+		{% csrf_token %}
+		<p>
+			<label style="color:blue;" >Введите название курса</label><br>
+			<input type="text" name="title" />
+		</p>
+		<p>
+			<label style="color:blue;" >Введите дату курса</label><br>
+			<input type="date" name="start_date" />
+		</p>
+		<input type="submit" value="Сохранить" >
+	</form>
+</body>
+</html>

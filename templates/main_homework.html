@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid red;
+}
+th, td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+</style>
+	<meta charset="utf-8" />
+	<title>Element_online_school</title>
+</head>
+<body>
+	<h3 title="Homework"> Домашнее задание</h3>
+	<h4><a href="/create_homework/" title="Add homework" style="color:blue";>Добавить домашнее задание</a></h4>
+	<table>
+		<thead>
+			<th title="decision">Решение</th>
+			<th title="title">Название</th>
+			<th title="complexity">Сложность</th>
+			<th title="topic">Тема</th>
+		</thead>
+		{% for homework in homeworks %}
+		<tr>
+			<td>{{ homework.decision }}</td>
+			<td>{{ homework.title }}</td>
+			<td>{{ homework.complexity }}</td>
+			<td>{{ homework.topic }}</td>
+			<td>
+				<a href="edit_homework/{{homework.id}}" style="color:green;" title="to change">Изменить</a>
+				<a href="delete/{{homework.id}}" style="color:red;" title="delete">Удалить</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

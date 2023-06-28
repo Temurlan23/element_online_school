@@ -6,7 +6,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 #User = get_user_model()
 
 class Course(models.Model):
-	title = models.CharField(max_length=255, verbose_name="Название")
+	title = models.CharField(max_length=255, null=True, verbose_name="Название")
 	start_date = models.DateField(blank=True, null=True, verbose_name="Дата начала курса")
 	
 	def __str__(self):
@@ -19,8 +19,8 @@ class Course(models.Model):
 class Topic(models.Model):
 	title = models.CharField(max_length=255, verbose_name="Название")
 	duration = models.DateTimeField(verbose_name="Длительность")
-	author = models.OneToOneField("users.User", blank=True, null=True, on_delete=models.CASCADE, verbose_name="Автор")
-	course = models.OneToOneField(Course,on_delete=models.CASCADE, verbose_name="Курс")
+	author = models.ForeignKey("users.User", blank=True, null=True, on_delete=models.CASCADE, verbose_name="Автор")
+	course = models.ForeignKey(Course,on_delete=models.CASCADE, verbose_name="Курс", null=True, blank=True)
 
 	def __str__(self):
 		return self.title
@@ -33,7 +33,7 @@ class Homework(models.Model):
 	decision = models.TextField(blank=True, null=True, verbose_name="Решение")
 	title = models.CharField(max_length=255, verbose_name="Название")
 	complexity = models.CharField(max_length=255, blank=True, null=True, verbose_name="Сложность")
-	topic = models.OneToOneField(Topic, on_delete=models.CASCADE, verbose_name="Тема")
+	topic = models.ForeignKey(Topic, on_delete=models.CASCADE, verbose_name="Тема")
 	
 	def __str__(self):
 		return self.title
@@ -45,8 +45,8 @@ class Homework(models.Model):
 
 class Grade(models.Model):
 	rating = models.PositiveIntegerField(default=0, verbose_name="Оценка")
-	topic = models.OneToOneField(Topic, blank=True, null=True, on_delete=models.CASCADE, verbose_name="Тема")
-	student = models.OneToOneField("users.User", on_delete=models.CASCADE, verbose_name="Студент")
+	topic = models.ForeignKey(Topic, blank=True, null=True, on_delete=models.CASCADE, verbose_name="Тема")
+	student = models.ForeignKey("users.User", on_delete=models.CASCADE, null=True, verbose_name="Студент")
 
 	def __str__(self):
 		return self.student.phone

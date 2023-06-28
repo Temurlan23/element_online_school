@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Element online scool</title>
+</head>
+<body>
+	<h2>Изменение курса</h2>
+	<form method="POST">
+		{% csrf_token %}
+		<p>
+			<label>Введите название курса</label><br>
+			<input type="text" name="title" value="{{course.title}}" />
+		</p>
+		<p>
+			<label>Введите дату курса</label><br>
+			<input type="date" name="start_date" value="{{course.start_date}}" />
+		</p>
+		<input type="submit" value="Сохранить" >
+	</form>
+</body>
+</html>

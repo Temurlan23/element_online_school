@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Element_online_school</title>
+</head>
+<body>
+	<h2>Добавить домашнее задание</h2>
+	<form method="POST">
+		{% csrf_token %}
+		<p>
+			<label>Введите решение</label><br>
+			<input type="text" name="decision" />
+		</p>
+		<p>
+			<label>Введите название домашнего задания</label><br>
+			<input type="text" name="title" />
+		</p>
+		<p>
+			<label>Выберите сложность</label><br>
+			<input type="text" name="complexity" />
+		</p>
+		<p>
+			<label>Выберите название темы</label><br>
+			<select name="topic">
+				{% for topic in topics %}
+					<option value="{{topic.id}}" name="topic">{{ topic }}</option>
+				{% endfor %}
+			</select>
+		</p>
+		<input type="submit" value="Сохранить" >
+	</form>
+</body>
+</html>
